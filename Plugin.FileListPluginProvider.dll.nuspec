@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package>
+	<metadata>
+		<id>AlphaOmega.SAL.Plugin.FileListPluginProvider</id>
+		<version>0.0.0.0</version>
+		<authors>DKorablin</authors>
+		<license type="expression">Apache-1.0</license>
+		<readme>docs\README.md</readme>
+		<requireLicenseAcceptance>false</requireLicenseAcceptance>
+		<projectUrl>https://dkorablin.ru/project/Default.aspx?File=105</projectUrl>
+		<repository type="git" url="https://github.com/DKorablin/Plugin.FileListPluginProvider" />
+		<description>Plugin provider using XML file to specify assemblies and instances to load</description>
+		<releaseNotes></releaseNotes>
+		<copyright>Danila Korablin</copyright>
+		<tags>SAL,Plugin,PluginProvider</tags>
+		<dependencies>
+			<group targetFramework="net20">
+				<dependency id="SAL.Flatbed" version="1.2.9" />
+			</group>
+			<group targetFramework="netstandard2.0">
+				<dependency id="System.Text.Encoding.CodePages" version="7.0.0" />
+			</group>
+		</dependencies>
+	</metadata>
+	<files>
+		<file src="README.md" target="docs" />
+		<!--file src="bin\net20\Plugin.FileListPluginProvider.xml" target="xml" /-->
+		<file src="bin\net20\Plugin.FileListPluginProvider.dll" target="lib\net20" />
+		<file src="bin\netstandard20\Plugin.FileListPluginProvider.dll" target="lib\netstandard2.0" />
+	</files>
+</package>

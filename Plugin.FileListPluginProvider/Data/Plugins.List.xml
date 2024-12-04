@@ -1,0 +1,126 @@
+﻿<?xml version="1.0" encoding="utf-8" standalone="no"?>
+<Plugins>
+	<Plugin Assembly="Kernel.Empty.dll">
+		<Instance>Kernel.Empty.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Autorun.dll">
+		<Instance>Plugin.Autorun.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Browser.dll">
+		<Instance>Plugin.Browser.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.ByteCodeView.dll">
+		<Instance>Plugin.ByteCodeView.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Caching.AppFabric.dll">
+		<Instance>Plugin.Caching.AppFabric.Plugin</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Caching.Web.dll">
+		<Instance>Plugin.Caching.Web.Plugin</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Compiler.dll">
+		<Instance>Plugin.Compiler.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Configuration.dll">
+		<Instance>Plugin.Configuration.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.DeviceInfo.dll">
+		<Instance>Plugin.DeviceInfo.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.DexImageView.dll">
+		<Instance>Plugin.DexImageView.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.ElfImageView.dll">
+		<Instance>Plugin.ElfImageView.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.EventLog.dll">
+		<Instance>Plugin.EventLog.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.ExceptionLogger.dll">
+		<Instance>Plugin.ExceptionLogger.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Exist.dll">
+		<Instance>Plugin.Exist.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.GacUtil.dll">
+		<Instance>Plugin.GacUtil.Plugin</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.HttpClient.dll">
+		<Instance>Plugin.HttpClient.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.IISControl.dll">
+		<Instance>Plugin.IISControl.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.LoadedAssemblies.dll">
+		<Instance>Plugin.LoadedAssemblies.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Mail.dll">
+		<Instance>Plugin.Mail.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Members.dll">
+		<Instance>Plugin.Members.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.MsSqlUtils.dll">
+		<Instance>Plugin.MsSqlUtils.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Notify.dll">
+		<Instance>Plugin.Notify.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.PEImageView.dll">
+		<Instance>Plugin.PEImageView.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.PluginUploader.dll">
+		<Instance>Plugin.PluginUploader.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.RandomProxy.dll">
+		<Instance>Plugin.RandomProxy.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.RDP.dll">
+		<Instance>Plugin.RDP.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.ReflectionSearch.dll">
+		<Instance>Plugin.ReflectionSearch.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.RuntimeDiagnostics.dll">
+		<Instance>Plugin.RuntimeDiagnostics.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Sandcastle.dll">
+		<Instance>Plugin.Sandcastle.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.SingleInstance.dll">
+		<Instance>Plugin.SingleInstance.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.sqlCompiler.dll">
+		<Instance>Plugin.sqlCompiler.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.SqlSettingsProvider.dll">
+		<Instance>Plugin.SqlSettingsProvider.Plugin</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Tools.Xml.dll">
+		<Instance>Plugin.Tools.Xml.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Tray.dll">
+		<Instance>Plugin.Tray.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.UnitTestClient.dll">
+		<Instance>Plugin.UnitTestClient.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.VinDecode.dll">
+		<Instance>Plugin.VinDecode.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.WebHelper.dll">
+		<Instance>Plugin.WebHelper.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.Winlogon.dll">
+		<Instance>Plugin.Winlogon.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.WorkingHours.dll">
+		<Instance>Plugin.WorkingHours.Plugin</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.wsClient.dll">
+		<Instance>Plugin.wsClient.PluginWindows</Instance>
+	</Plugin>
+	<Plugin Assembly="Plugin.wsCompiler.dll">
+		<Instance>Plugin.wsCompiler.PluginWindows</Instance>
+	</Plugin>
+</Plugins>

@@ -1,0 +1,48 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34511.84
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{29EFF129-D181-471B-939B-05374FAEB871}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+		Plugin.FileListPluginProvider.dll.nuspec = Plugin.FileListPluginProvider.dll.nuspec
+		README.md = README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Workflows", "Workflows", "{06D963D4-9A0B-4B2B-A3C3-B1A534140FD0}"
+	ProjectSection(SolutionItems) = preProject
+		.github\dependabot.yml = .github\dependabot.yml
+		.github\workflows\release.yml = .github\workflows\release.yml
+		.github\workflows\test.yml = .github\workflows\test.yml
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Plugin.FileListPluginProvider35", "Plugin.FileListPluginProvider\Plugin.FileListPluginProvider35.csproj", "{4D035108-7B49-4393-81D8-A1868AE70C03}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Plugin.FileListPluginProvider", "Plugin.FileListPluginProvider\Plugin.FileListPluginProvider.csproj", "{B6E591D3-43FA-4170-84AD-CB671D8ECF7E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{4D035108-7B49-4393-81D8-A1868AE70C03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4D035108-7B49-4393-81D8-A1868AE70C03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4D035108-7B49-4393-81D8-A1868AE70C03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4D035108-7B49-4393-81D8-A1868AE70C03}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B6E591D3-43FA-4170-84AD-CB671D8ECF7E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B6E591D3-43FA-4170-84AD-CB671D8ECF7E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B6E591D3-43FA-4170-84AD-CB671D8ECF7E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B6E591D3-43FA-4170-84AD-CB671D8ECF7E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{06D963D4-9A0B-4B2B-A3C3-B1A534140FD0} = {29EFF129-D181-471B-939B-05374FAEB871}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BA4632CB-F2AC-4E96-82A0-59488827569D}
+	EndGlobalSection
+EndGlobal

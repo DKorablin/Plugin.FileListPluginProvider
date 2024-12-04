@@ -1,0 +1,42 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>netstandard2.0</TargetFramework>
+		<OutputType>Library</OutputType>
+		<RootNamespace>Plugin.FileListPluginProvider</RootNamespace>
+		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
+		<AssemblyTitle>Plugin.FileListPluginProvider</AssemblyTitle>
+		<Company>Danila Korablin</Company>
+		<Product>Plugin loader from file system from list</Product>
+		<Copyright>Copyright © Danila Korablin 2016-2020</Copyright>
+		<Configuration>Debug</Configuration>
+		<AssemblyVersion>1.1.*</AssemblyVersion>
+		<FileVersion>1.2.0.0</FileVersion>
+		<Deterministic>false</Deterministic>
+	</PropertyGroup>
+	<ItemGroup>
+		<Reference Include="SAL.Flatbed">
+			<HintPath>..\..\SAL\bin\SAL.Flatbed.dll</HintPath>
+			<Private>False</Private>
+		</Reference>
+	</ItemGroup>
+	<ItemGroup>
+		<Compile Include="..\PluginProviders.Shared\FilePluginArgs.cs">
+			<Link>FilePluginArgs.cs</Link>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+		<EmbeddedResource Update="Properties\Resources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>Resources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+		<Compile Update="Properties\Resources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>Resources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+	<ItemGroup>
+	  <PackageReference Include="SAL.Flatbed" Version="1.2.9" />
+	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.0" />
+	</ItemGroup>
+</Project>
