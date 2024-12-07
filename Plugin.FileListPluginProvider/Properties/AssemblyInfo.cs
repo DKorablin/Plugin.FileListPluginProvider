@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 [assembly: Guid("d505490e-747c-4d05-becd-8661b85c1711")]
 [assembly: System.CLSCompliant(true)]
 
-#if NETSTANDARD
+#if NETSTANDARD || NETCOREAPP
 [assembly: AssemblyMetadata("ProjectUrl", "https://dkorablin.ru/project/Default.aspx?File=105")]
 #else
 
@@ -18,5 +18,5 @@ using System.Runtime.InteropServices;
 #endif
 [assembly: AssemblyCompany("Danila Korablin")]
 [assembly: AssemblyProduct("Plugin loader from file system by list")]
-[assembly: AssemblyCopyright("Copyright © Danila Korablin 2016-2020")]
+[assembly: AssemblyCopyright("Copyright © Danila Korablin 2016-2024")]
 #endif

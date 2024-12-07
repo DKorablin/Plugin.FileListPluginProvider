@@ -75,24 +75,25 @@ namespace Plugin.FileListPluginProvider
 			AssemblyName targetName = new AssemblyName(assemblyName);
 			foreach(String pluginPath in this.Args.PluginPath)
 				if(Directory.Exists(pluginPath))
-					foreach(String file in Directory.GetFiles(pluginPath, Constant.LibrarySearchExtension, SearchOption.AllDirectories))//Searching only files with .dll extension
-						try
-						{
-							AssemblyName name = AssemblyName.GetAssemblyName(file);
-							if(name.FullName == targetName.FullName)
-								return Assembly.LoadFile(file);
-							//return assembly;//TODO: Reference DLL can't be loaded from memory!
-						} catch(BadImageFormatException)
-						{
-							continue;
-						} catch(FileLoadException)
-						{
-							continue;
-						} catch(Exception exc)
-						{
-							exc.Data.Add("Library", file);
-							this.Trace.TraceData(TraceEventType.Error, 1, exc);
-						}
+					foreach(String file in Directory.GetFiles(pluginPath, "*.*", SearchOption.AllDirectories))
+						if(FilePluginArgs.CheckFileExtension(file)) //Searching only files with .dll extension (UPD: Added logic to unify plugins extensions)
+							try
+							{
+								AssemblyName name = AssemblyName.GetAssemblyName(file);
+								if(name.FullName == targetName.FullName)
+									return Assembly.LoadFile(file);
+								//return assembly;//TODO: Reference DLL can't be loaded from memory!
+							} catch(BadImageFormatException)
+							{
+								continue;
+							} catch(FileLoadException)
+							{
+								continue;
+							} catch(Exception exc)
+							{
+								exc.Data.Add("Library", file);
+								this.Trace.TraceData(TraceEventType.Error, 1, exc);
+							}
 
 			this.Trace.TraceEvent(TraceEventType.Warning, 5, "The provider {2} is unable to locate the assembly {0} in the path {1}", assemblyName, String.Join(",", this.Args.PluginPath), this.GetType());
 			IPluginProvider parentProvider = ((IPluginProvider)this).ParentProvider;
