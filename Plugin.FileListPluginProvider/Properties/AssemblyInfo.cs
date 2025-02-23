@@ -8,8 +8,6 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyMetadata("ProjectUrl", "https://dkorablin.ru/project/Default.aspx?File=105")]
 #else
 
-[assembly: AssemblyTitle("Plugin.FileListPluginProvider")]
 [assembly: AssemblyDescription("Plugin provider using XML file to specify assemblies and instances to load")]
-[assembly: AssemblyProduct("Plugin loader from file system by list")]
 [assembly: AssemblyCopyright("Copyright © Danila Korablin 2016-2025")]
 #endif
