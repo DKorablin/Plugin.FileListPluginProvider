@@ -14,7 +14,7 @@
 
 	<!--nuspec-->
 	<PropertyGroup>
-		<PackageId>AlphaOmega.SAL.Plugin.FileDomainPluginProvider</PackageId>
+		<PackageId>AlphaOmega.SAL.Plugin.FileListPluginProvider</PackageId>
 		<Version>$(Version)</Version>
 		<Title>Plugin loader from file system from list</Title>
 		<Description>Plugin provider using XML file to specify assemblies and instances to load.</Description>
