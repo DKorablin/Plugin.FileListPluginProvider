@@ -25,14 +25,17 @@ namespace Plugin.FileListPluginProvider.Data
 		/// <returns>Loaded XML file with checked schema or exception</returns>
 		private static XmlDocument LoadDocument(String xsd, String xmlFilePath)
 		{
-			XmlDocument document = new XmlDocument();
+			XmlDocument document = new XmlDocument()
+			{
+				XmlResolver = null,
+			};
 
 			using(MemoryStream xsdStream = new MemoryStream(Encoding.UTF8.GetBytes(xsd)))
 			{
 				XmlReader xsdReader = XmlReader.Create(xsdStream);
 				XmlReaderSettings settings = new XmlReaderSettings()
 				{
-					ValidationType=ValidationType.Schema,
+					ValidationType = ValidationType.Schema,
 				};
 				settings.Schemas.Add(null, xsdReader);
 
@@ -45,7 +48,7 @@ namespace Plugin.FileListPluginProvider.Data
 
 		public IEnumerable<PluginInfo> ReadPluginInfo()
 		{
-			XmlDocument document = XmlFile.LoadDocument(Resources.xsdPlugins_List,this._filePath);
+			XmlDocument document = XmlFile.LoadDocument(Resources.xsdPlugins_List, this._filePath);
 
 			foreach(XmlNode node in document.SelectNodes("/Plugins/Plugin"))
 			{
@@ -62,7 +65,11 @@ namespace Plugin.FileListPluginProvider.Data
 
 		public void SavePluginInfo(PluginInfo[] plugins)
 		{
-			XmlDocument document = new XmlDocument();
+			XmlDocument document = new XmlDocument()
+			{
+				XmlResolver = null,
+			};
+
 			XmlDeclaration head = document.CreateXmlDeclaration("1.0", "utf-8", "no");
 			document.AppendChild(head);
 			XmlNode rootNode = document.CreateNode(XmlNodeType.Element, "Plugins", null);
@@ -90,7 +97,7 @@ namespace Plugin.FileListPluginProvider.Data
 				Indent = true,
 				IndentChars = "\t",
 			};
-			using(XmlWriter writer = XmlWriter.Create(this._filePath))
+			using(XmlWriter writer = XmlWriter.Create(this._filePath, settings))
 				document.Save(writer);
 		}
 	}

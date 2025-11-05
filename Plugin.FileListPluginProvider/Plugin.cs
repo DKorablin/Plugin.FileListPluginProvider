@@ -53,7 +53,6 @@ namespace Plugin.FileListPluginProvider
 
 		void IPluginProvider.LoadPlugins()
 		{
-			//System.Diagnostics.Debugger.Launch();
 			foreach(String pluginPath in this.Args.PluginPath)
 				if(Directory.Exists(pluginPath))
 				{
@@ -85,10 +84,10 @@ namespace Plugin.FileListPluginProvider
 								//return assembly;//TODO: Reference DLL can't be loaded from memory!
 							} catch(BadImageFormatException)
 							{
-								continue;
+								// Ignore invalid libraries
 							} catch(FileLoadException)
 							{
-								continue;
+								// Ignore invalid libraries
 							} catch(Exception exc)
 							{
 								exc.Data.Add("Library", file);
@@ -97,9 +96,7 @@ namespace Plugin.FileListPluginProvider
 
 			this.Trace.TraceEvent(TraceEventType.Warning, 5, "The provider {2} is unable to locate the assembly {0} in the path {1}", assemblyName, String.Join(",", this.Args.PluginPath), this.GetType());
 			IPluginProvider parentProvider = ((IPluginProvider)this).ParentProvider;
-			return parentProvider == null
-				? null
-				: parentProvider.ResolveAssembly(assemblyName);
+			return parentProvider?.ResolveAssembly(assemblyName);
 		}
 
 		public void RebuildXmlFile()
@@ -107,22 +104,22 @@ namespace Plugin.FileListPluginProvider
 			foreach(String pluginPath in this.Args.PluginPath)
 			{
 				String fileName = Plugin.GetUniqueFileName(pluginPath, Constant.ListFileName, 0);
-				
-				List<PluginInfo> infos=new List<PluginInfo>();
+
+				List<PluginInfo> items = new List<PluginInfo>();
 				foreach(IPluginDescription plugin in this.Host.Plugins)
 				{
 					if(plugin.Source.StartsWith(pluginPath, StringComparison.OrdinalIgnoreCase))
 					{
 						String assemblyName = Path.GetFileName(plugin.Source);
 						String fullClassName = plugin.Instance.GetType().FullName;
-						infos.Add(new PluginInfo(assemblyName, new String[] { fullClassName, }));
+						items.Add(new PluginInfo(assemblyName, new String[] { fullClassName, }));
 					}
 				}
 
-				if(infos.Count > 0)
+				if(items.Count > 0)
 				{
 					XmlFile file = new XmlFile(Path.Combine(pluginPath, fileName));
-					file.SavePluginInfo(infos.ToArray());
+					file.SavePluginInfo(items.ToArray());
 				}
 			}
 		}
@@ -136,8 +133,8 @@ namespace Plugin.FileListPluginProvider
 				try
 				{
 					Boolean loaded = false;
-					// Проверяем что плагин с таким источником ещё не загружен, если его уже загрузил родительский провайдер.
-					// Загрузка из ФС так что источник должен быть по любому уникальный.
+					// Check that the plugin with this source hasn't yet been loaded if it's already loaded by the parent provider.
+					// Loading from the file system, so the source must be unique.
 					foreach(IPluginDescription item in this.Host.Plugins)
 						if(assemblyPath.Equals(item.Source, StringComparison.OrdinalIgnoreCase))
 						{
@@ -152,7 +149,7 @@ namespace Plugin.FileListPluginProvider
 						foreach(String type in info.Instance)//TODO: Need to check ID of each instance
 							this.Host.Plugins.LoadPlugin(assembly, type, assemblyPath, mode);
 					}
-				} catch(BadImageFormatException exc)//Ошибка загрузки плагина. Можно почитать заголовок загружаемого файла, но мне влом
+				} catch(BadImageFormatException exc)//Plugin loading error. I could read the title of the file being loaded, but I'm too lazy.
 				{
 					exc.Data.Add("Library", assemblyPath);
 					this.Trace.TraceData(TraceEventType.Error, 1, exc);
@@ -167,19 +164,16 @@ namespace Plugin.FileListPluginProvider
 		private void AddMonitor(String pluginPath)
 		{
 			FileSystemWatcher monitor = new FileSystemWatcher(pluginPath, Constant.ListFileName);
-			monitor.Changed += new FileSystemEventHandler(Monitor_Changed);
+			monitor.Changed += (sender, args) => this.Trace.TraceInformation("File {0} {1}", args.FullPath, args.ChangeType);
 			monitor.EnableRaisingEvents = true;
 			this.Monitors.Add(monitor);
 		}
 
-		private void Monitor_Changed(Object sender, FileSystemEventArgs args)
-			=> this.Trace.TraceInformation("File {0} {1}", args.FullPath, args.ChangeType);
-
-		/// <summary>Получить уникальное имя файла не повторяющееся на файловой системе.</summary>
-		/// <param name="path">Путь к папке в которой осуществлять поиск файла.</param>
-		/// <param name="fileName">Наименование файла.</param>
-		/// <param name="index">Индекс файла, который будет подставляться к названию файла.</param>
-		/// <returns>Уникальное наименование файла в папке <see cref="T:path"/>.</returns>
+		/// <summary>Get a unique file name that is unique to the file system.</summary>
+		/// <param name="path">Path to the folder in which to search for the file.</param>
+		/// <param name="fileName">File name.</param>
+		/// <param name="index">File index, which will be substituted for the file name.</param>
+		/// <returns>A unique file name in the <paramref name="path"/> folder.</returns>
 		private static String GetUniqueFileName(String path, String fileName, Int32 index)
 		{
 			String file = index > 0

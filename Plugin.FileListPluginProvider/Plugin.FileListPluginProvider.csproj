@@ -1,24 +1,42 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 	<PropertyGroup>
-		<TargetFramework>netstandard2.0</TargetFramework>
+		<TargetFrameworks>net35;netstandard2.0</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<RootNamespace>Plugin.FileListPluginProvider</RootNamespace>
-		<GenerateAssemblyInfo>true</GenerateAssemblyInfo>
-		<AssemblyTitle>Plugin.FileListPluginProvider</AssemblyTitle>
-		<Company>Danila Korablin</Company>
 		<Product>Plugin loader from file system from list</Product>
-		<Copyright>Copyright © Danila Korablin 2016-2024</Copyright>
-		<Configuration>Debug</Configuration>
-		<AssemblyVersion>1.1.*</AssemblyVersion>
-		<FileVersion>1.2.0.0</FileVersion>
+		<Configuration>Release</Configuration>
 		<Deterministic>false</Deterministic>
+		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+		<GeneratePackageOnBuild>False</GeneratePackageOnBuild>
+		<GenerateDocumentationFile>False</GenerateDocumentationFile>
+		<CopyLocalLockFileAssemblies>True</CopyLocalLockFileAssemblies>
 	</PropertyGroup>
+
+	<!--nuspec-->
+	<PropertyGroup>
+		<PackageId>AlphaOmega.SAL.Plugin.FileDomainPluginProvider</PackageId>
+		<Version>$(Version)</Version>
+		<Title>Plugin loader from file system from list</Title>
+		<Description>Plugin provider using XML file to specify assemblies and instances to load.</Description>
+		<Authors>Danila Korablin</Authors>
+		<PackageLicenseExpression>MIT</PackageLicenseExpression>
+		<PackageReadmeFile>docs\README.md</PackageReadmeFile>
+		<PackageIcon>docs\SAL.100.png</PackageIcon>
+		<RepositoryUrl>https://github.com/DKorablin/Plugin.FileListPluginProvider</RepositoryUrl>
+		<PackageTags>SAL,Plugin,Provider</PackageTags>
+	</PropertyGroup>
+
 	<ItemGroup>
-		<Reference Include="SAL.Flatbed">
-			<HintPath>..\..\SAL\bin\SAL.Flatbed.dll</HintPath>
-			<Private>False</Private>
-		</Reference>
+		<None Include="..\README.md" Pack="true" PackagePath="\docs" />
+		<None Include="..\Images.Shared\SAL.100.png" Pack="true" PackagePath="\docs" />
 	</ItemGroup>
+
+	<ItemGroup>
+		<PackageReference Include="SAL.Flatbed" />
+		<PackageReference Include="System.Configuration.ConfigurationManager" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
+		<Reference Include="System.Configuration" Condition="'$(TargetFramework)' == 'net35'" />
+	</ItemGroup>
+
 	<ItemGroup>
 		<Compile Include="..\PluginProviders.Shared\FilePluginArgs.cs">
 			<Link>FilePluginArgs.cs</Link>
@@ -34,9 +52,5 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>Resources.resx</DependentUpon>
 		</Compile>
-	</ItemGroup>
-	<ItemGroup>
-	  <PackageReference Include="SAL.Flatbed" Version="1.2.10" />
-	  <PackageReference Include="System.Configuration.ConfigurationManager" Version="9.0.0" />
 	</ItemGroup>
 </Project>
