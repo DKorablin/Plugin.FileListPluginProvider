@@ -1,7 +1,6 @@
 # File List Plugin Provider
 
 [![Build, Release](https://github.com/DKorablin/Plugin.FileListPluginProvider/actions/workflows/release.yml/badge.svg)](https://github.com/DKorablin/Plugin.FileListPluginProvider/actions/workflows/release.yml)
-[![NuGet](https://img.shields.io/nuget/v/AlphaOmega.SAL.Plugin.FileDomainPluginProvider.svg)](https://www.nuget.org/packages/AlphaOmega.SAL.Plugin.FileDomainPluginProvider/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 A SAL (Simple Application Loader) plugin provider that loads plugins from the file system based on an XML configuration file. This provider is ideal when you need to specify an exact list of plugins to load or when your application requires a fixed set of plugins.
