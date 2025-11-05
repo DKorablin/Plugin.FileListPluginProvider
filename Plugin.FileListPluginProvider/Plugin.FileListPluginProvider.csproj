@@ -3,7 +3,6 @@
 		<TargetFrameworks>net35;netstandard2.0</TargetFrameworks>
 		<OutputType>Library</OutputType>
 		<RootNamespace>Plugin.FileListPluginProvider</RootNamespace>
-		<Product>Plugin loader from file system from list</Product>
 		<Configuration>Release</Configuration>
 		<Deterministic>false</Deterministic>
 		<GenerateAssemblyInfo>False</GenerateAssemblyInfo>
@@ -32,7 +31,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="SAL.Flatbed" />
+		<PackageReference Include="SAL.Flatbed">
+			<ExcludeAssets>runtime</ExcludeAssets>
+		</PackageReference>
 		<PackageReference Include="System.Configuration.ConfigurationManager" Condition="'$(TargetFramework)' == 'netstandard2.0'" />
 		<Reference Include="System.Configuration" Condition="'$(TargetFramework)' == 'net35'" />
 	</ItemGroup>
