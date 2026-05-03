@@ -5,4 +5,3 @@ using System.Runtime.InteropServices;
 [assembly: System.CLSCompliant(true)]
 
 [assembly: AssemblyDescription("Plugin provider using XML file to specify assemblies and instances to load")]
-[assembly: AssemblyCopyright("Copyright © Danila Korablin 2016-2025")]

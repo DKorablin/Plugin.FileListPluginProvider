@@ -11,10 +11,7 @@ namespace Plugin.FileListPluginProvider
 {
 	public class Plugin : IPluginProvider
 	{
-		private TraceSource _trace;
-
-		#region Properties
-		private TraceSource Trace { get => this._trace ?? (this._trace = Plugin.CreateTraceSource<Plugin>()); }
+		private ITraceSource Trace { get; }
 
 		/// <summary>Arguments transferred to the main application</summary>
 		private FilePluginArgs Args { get; set; }
@@ -25,10 +22,12 @@ namespace Plugin.FileListPluginProvider
 		private List<FileSystemWatcher> Monitors { get; set; }
 
 		IPluginProvider IPluginProvider.ParentProvider { get; set; }
-		#endregion Properties
 
-		public Plugin(IHost host)
-			=> this.Host = host ?? throw new ArgumentNullException(nameof(host));
+		public Plugin(IHost host, ITraceSource trace)
+		{
+			this.Host = host ?? throw new ArgumentNullException(nameof(host));
+			this.Trace = trace ?? throw new ArgumentNullException(nameof(trace));
+		}
 
 		Boolean IPlugin.OnConnection(ConnectMode mode)
 		{
@@ -62,7 +61,7 @@ namespace Plugin.FileListPluginProvider
 						this.AnalyzeXmlFile(pluginPath, ConnectMode.Startup);
 						this.AddMonitor(pluginPath);
 					} else
-						this.Trace.TraceInformation("FileList {0} not found in target directory", xmlFilePath);
+						this.Trace.TraceEvent(TraceEventType.Information, 0, "FileList {0} not found in target directory", xmlFilePath);
 				}
 		}
 
@@ -151,11 +150,11 @@ namespace Plugin.FileListPluginProvider
 					}
 				} catch(BadImageFormatException exc)//Plugin loading error. I could read the title of the file being loaded, but I'm too lazy.
 				{
-					exc.Data.Add("Library", assemblyPath);
+					exc.Data.Add(nameof(assemblyPath), assemblyPath);
 					this.Trace.TraceData(TraceEventType.Error, 1, exc);
 				} catch(Exception exc)
 				{
-					exc.Data.Add("Library", assemblyPath);
+					exc.Data.Add(nameof(assemblyPath), assemblyPath);
 					this.Trace.TraceData(TraceEventType.Error, 1, exc);
 				}
 			}
@@ -164,7 +163,7 @@ namespace Plugin.FileListPluginProvider
 		private void AddMonitor(String pluginPath)
 		{
 			FileSystemWatcher monitor = new FileSystemWatcher(pluginPath, Constant.ListFileName);
-			monitor.Changed += (sender, args) => this.Trace.TraceInformation("File {0} {1}", args.FullPath, args.ChangeType);
+			monitor.Changed += (sender, args) => this.Trace.TraceEvent(TraceEventType.Information, 0, "File {0} {1}", args.FullPath, args.ChangeType);
 			monitor.EnableRaisingEvents = true;
 			this.Monitors.Add(monitor);
 		}
@@ -183,15 +182,6 @@ namespace Plugin.FileListPluginProvider
 			return File.Exists(Path.Combine(path, file))
 				? Plugin.GetUniqueFileName(path, fileName, ++index)
 				: file;
-		}
-
-		private static TraceSource CreateTraceSource<T>(String name = null) where T : IPlugin
-		{
-			TraceSource result = new TraceSource(typeof(T).Assembly.GetName().Name + name);
-			result.Switch.Level = SourceLevels.All;
-			result.Listeners.Remove("Default");
-			result.Listeners.AddRange(System.Diagnostics.Trace.Listeners);
-			return result;
 		}
 	}
 }
