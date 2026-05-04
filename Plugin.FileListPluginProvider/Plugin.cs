@@ -150,11 +150,11 @@ namespace Plugin.FileListPluginProvider
 					}
 				} catch(BadImageFormatException exc)//Plugin loading error. I could read the title of the file being loaded, but I'm too lazy.
 				{
-					exc.Data.Add(nameof(assemblyPath), assemblyPath);
+					exc.Data.Add("Library", assemblyPath);
 					this.Trace.TraceData(TraceEventType.Error, 1, exc);
 				} catch(Exception exc)
 				{
-					exc.Data.Add(nameof(assemblyPath), assemblyPath);
+					exc.Data.Add("Library", assemblyPath);
 					this.Trace.TraceData(TraceEventType.Error, 1, exc);
 				}
 			}
